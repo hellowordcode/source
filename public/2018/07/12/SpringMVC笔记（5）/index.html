@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>SpringMVC笔记（5） | HelloCode</title>
+    <meta name="author" content="黄X" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="前端控制器1.前端控制器接收请求
+调用doDispatch方法
+12345protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception &amp;#123;        HttpServletRequest processedRequest = request;        HandlerExecutionChain mappedHandler = null; " />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/front-end">前端</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/back-end">后端</a>
+        </li>
+        
+        
+        
+        <li class="nav-item nav-item-tag">
+            <a id="nav-tag" class="nav-link" href="#">标签</a>
+            <div id="nav-tags" class="nav-tag-wrap">
+                <i class="nav-tag-arrow"></i>
+                
+  <div class="widget-wrap">
+    <h3 class="widget-title">
+        <i class="icon-tag vm"></i>
+        <span class="vm">标签</span>
+    </h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC笔记/">SpringMVC笔记</a></li></ul>
+    </div>
+  </div>
+
+
+            </div>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/atom.xml">订阅</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/about">关于</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://hellowordcode.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前端控制器"><span class="toc-number">1.</span> <span class="toc-text">前端控制器</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            SpringMVC笔记（5）
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/07/12/SpringMVC笔记（5）/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-12T14:28:27.000Z" itemprop="datePublished">2018-07-12</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/SpringMVC笔记/">SpringMVC笔记</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="前端控制器"><a href="#前端控制器" class="headerlink" title="前端控制器"></a>前端控制器</h2><p>1.前端控制器接收请求</p>
+<p>调用<code>doDispatch</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doDispatch</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        HttpServletRequest processedRequest = request;</span><br><span class="line">        HandlerExecutionChain mappedHandler = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">boolean</span> multipartRequestParsed = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.前端控制器调用<code>HandlerMapping</code>（处理器映射器）根据url查找Handler</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Determine handler for the current request.</span><br><span class="line">mappedHandler = getHandler(processedRequest);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">- Return the HandlerExecutionChain for this request.</span></span><br><span class="line"><span class="comment">- &lt;p&gt;Tries all handler mappings in order.</span></span><br><span class="line"><span class="comment">- <span class="doctag">@param</span> request current HTTP request</span></span><br><span class="line"><span class="comment">- <span class="doctag">@return</span> the HandlerExecutionChain, or &#123;<span class="doctag">@code</span> null&#125; if no handler could be found</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">      <span class="function"><span class="keyword">protected</span> HandlerExecutionChain <span class="title">getHandler</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">          <span class="keyword">for</span> (HandlerMapping hm : <span class="keyword">this</span>.handlerMappings) &#123;</span><br><span class="line">              <span class="keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">     logger.trace(</span><br><span class="line">             <span class="string">"Testing handler map ["</span> + hm + <span class="string">"] in DispatcherServlet with name '"</span> + getServletName() + <span class="string">"'"</span>);</span><br><span class="line">              &#125;</span><br><span class="line">              HandlerExecutionChain handler = hm.getHandler(request);</span><br><span class="line">              <span class="keyword">if</span> (handler != <span class="keyword">null</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> handler;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>3.调用处理器适配器执行Handler,得到执行的结果<code>ModelAndView mv</code></p>
+<p>在<code>doDispatch</code>方法中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Actually invoke the handler.</span></span><br><span class="line">mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br></pre></td></tr></table></figure>
+<p>4.视图渲染，将model数据填充到request域</p>
+<p><code>doDispatch</code>-&gt;<code>processDispatchResult</code>-&gt;<code>render</code></p>
+<p>在<code>render</code>方法中,视图解析得到view</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// We need to resolve the view name.</span></span><br><span class="line">view = resolveViewName(mv.getViewName(), mv.getModelInternal(), locale, request);</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>5.调用view的渲染方法，将model数据填充到request域</p>
+<p>在<code>render</code>方法中,调用<code>View</code>接口的<code>render</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.render(mv.getModelInternal(), request, response);</span><br></pre></td></tr></table></figure>
+<p>## </p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="disqus_thread">
+        <p class="comment-tips">国内查看评论需要代理~</p>
+    </div>
+    <script>
+    window.disqus_config = function () {
+        this.language = 'zh';
+        this.page.url = 'http://hellowordcode.github.io/2018/07/12/SpringMVC笔记（5）/';
+        this.page.title = 'SpringMVC笔记（5）';
+        this.page.identifier = '2018/07/12/SpringMVC笔记（5）/';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://name.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+        <footer class="footer">
+
+</footer>
+
+<script type="text/javascript" src="//s13.cnzz.com/z_stat.php?id=1234567890&amp;web_id=1234567890"></script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+
+</body>
+</html>

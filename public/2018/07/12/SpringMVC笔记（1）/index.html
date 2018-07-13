@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>SpringMVC笔记（1） | HelloCode</title>
+    <meta name="author" content="黄X" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="SpringMVC操作笔记SpringMVC基础知识介绍###SpringMVC功能部件
+
+
+组件及其作用
+
+前端控制器(DispatcherServlet)：接收请求，响应结果，相当于转发器，中央处理器。减少了其他组件之间的耦合度
+处理器映射器(HandlerMapping)：根据请求的url查找Handler
+Handler处理器：按照HandlerAdapter的要求编写
+处理器适配器(HandlerAdapter)：按照特定规则(HandlerAdapter要求的规则)执行Handler" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/front-end">前端</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/back-end">后端</a>
+        </li>
+        
+        
+        
+        <li class="nav-item nav-item-tag">
+            <a id="nav-tag" class="nav-link" href="#">标签</a>
+            <div id="nav-tags" class="nav-tag-wrap">
+                <i class="nav-tag-arrow"></i>
+                
+  <div class="widget-wrap">
+    <h3 class="widget-title">
+        <i class="icon-tag vm"></i>
+        <span class="vm">标签</span>
+    </h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC笔记/">SpringMVC笔记</a></li></ul>
+    </div>
+  </div>
+
+
+            </div>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/atom.xml">订阅</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/about">关于</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://hellowordcode.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringMVC操作笔记"><span class="toc-number">1.</span> <span class="toc-text">SpringMVC操作笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC基础知识介绍"><span class="toc-number">1.1.</span> <span class="toc-text">SpringMVC基础知识介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring工作流程"><span class="toc-number">1.1.1.</span> <span class="toc-text">Spring工作流程</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            SpringMVC笔记（1）
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/07/12/SpringMVC笔记（1）/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-12T14:28:27.000Z" itemprop="datePublished">2018-07-12</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/SpringMVC笔记/">SpringMVC笔记</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="SpringMVC操作笔记"><a href="#SpringMVC操作笔记" class="headerlink" title="SpringMVC操作笔记"></a>SpringMVC操作笔记</h1><h2 id="SpringMVC基础知识介绍"><a href="#SpringMVC基础知识介绍" class="headerlink" title="SpringMVC基础知识介绍"></a>SpringMVC基础知识介绍</h2><p>###SpringMVC功能部件</p>
+<!--springmvc是spring框架的一个模块，springmvc和spring无需通过中间整合层进行整合。-->
+<p><img src="https://i.imgur.com/e7v40XO.jpg" alt=""></p>
+<p>组件及其作用</p>
+<ul>
+<li>前端控制器(DispatcherServlet)：接收请求，响应结果，相当于转发器，中央处理器。减少了其他组件之间的耦合度</li>
+<li>处理器映射器(HandlerMapping)：根据请求的url查找Handler</li>
+<li><strong>Handler处理器</strong>：按照HandlerAdapter的要求编写</li>
+<li>处理器适配器(HandlerAdapter)：按照特定规则(HandlerAdapter要求的规则)执行Handler。</li>
+<li>视图解析器(ViewResolver)：进行视图解析，根据逻辑视图解析成真正的视图(View)</li>
+<li><strong>视图(View)</strong>：View是一个接口实现类试吃不同的View类型（jsp,pdf等等）</li>
+</ul>
+<!--*其中加粗的为需要程序员开发的，没加粗的为不需要程序员开发的*-->
+<h3 id="Spring工作流程"><a href="#Spring工作流程" class="headerlink" title="Spring工作流程"></a>Spring工作流程</h3><p><img src="https://i.imgur.com/FriXTPC.png" alt=""></p>
+<ul>
+<li>1.发起请求到前端控制器(<code>DispatcherServlet</code>)</li>
+<li>2.前端控制器请求处理器映射器(<code>HandlerMapping</code>)查找<code>Handler</code>(可根据xml配置、注解进行查找)</li>
+<li>3.处理器映射器(<code>HandlerMapping</code>)向前端控制器返回<code>Handler</code></li>
+<li>4.前端控制器调用处理器适配器(<code>HandlerAdapter</code>)执行<code>Handler</code></li>
+<li>5.处理器适配器(HandlerAdapter)去执行Handler</li>
+<li>6.Handler执行完，给适配器返回ModelAndView(Springmvc框架的一个底层对象)</li>
+<li>7.处理器适配器(<code>HandlerAdapter</code>)向前端控制器返回<code>ModelAndView</code></li>
+<li>8.前端控制器(<code>DispatcherServlet</code>)请求视图解析器(<code>ViewResolver</code>)进行视图解析，根据逻辑视图名解析成真正的视图(jsp)</li>
+<li>9.视图解析器(ViewResolver)向前端控制器(<code>DispatcherServlet</code>)返回View</li>
+<li>10.前端控制器进行视图渲染，即将模型数据(在<code>ModelAndView</code>对象中)填充到request域</li>
+<li>11.前端控制器向用户响应结果</li>
+</ul>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="disqus_thread">
+        <p class="comment-tips">国内查看评论需要代理~</p>
+    </div>
+    <script>
+    window.disqus_config = function () {
+        this.language = 'zh';
+        this.page.url = 'http://hellowordcode.github.io/2018/07/12/SpringMVC笔记（1）/';
+        this.page.title = 'SpringMVC笔记（1）';
+        this.page.identifier = '2018/07/12/SpringMVC笔记（1）/';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://name.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+        <footer class="footer">
+
+</footer>
+
+<script type="text/javascript" src="//s13.cnzz.com/z_stat.php?id=1234567890&amp;web_id=1234567890"></script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+
+</body>
+</html>

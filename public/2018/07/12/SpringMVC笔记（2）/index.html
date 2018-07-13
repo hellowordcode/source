@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>SpringMVC笔记（2） | HelloCode</title>
+    <meta name="author" content="黄X" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="SpringMVC(MAVEN工程创建)IDEA创建过程①创建MAVEN（web工程）new-&amp;gt;project-&amp;gt;maven，建一个裸的maven工程
+②添加依赖（pom.xml文件）123456789&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-webmvc&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;g" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/front-end">前端</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/back-end">后端</a>
+        </li>
+        
+        
+        
+        <li class="nav-item nav-item-tag">
+            <a id="nav-tag" class="nav-link" href="#">标签</a>
+            <div id="nav-tags" class="nav-tag-wrap">
+                <i class="nav-tag-arrow"></i>
+                
+  <div class="widget-wrap">
+    <h3 class="widget-title">
+        <i class="icon-tag vm"></i>
+        <span class="vm">标签</span>
+    </h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC笔记/">SpringMVC笔记</a></li></ul>
+    </div>
+  </div>
+
+
+            </div>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/atom.xml">订阅</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/about">关于</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://hellowordcode.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC-MAVEN工程创建"><span class="toc-number">1.</span> <span class="toc-text">SpringMVC(MAVEN工程创建)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA创建过程"><span class="toc-number">1.1.</span> <span class="toc-text">IDEA创建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#①创建MAVEN（web工程）"><span class="toc-number">1.1.1.</span> <span class="toc-text">①创建MAVEN（web工程）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#②添加依赖（pom-xml文件）"><span class="toc-number">1.1.2.</span> <span class="toc-text">②添加依赖（pom.xml文件）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#③配置文件–前端控制器（web-xml）"><span class="toc-number">1.1.3.</span> <span class="toc-text">③配置文件–前端控制器（web.xml）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⑤配置Handler"><span class="toc-number">1.1.4.</span> <span class="toc-text">⑤配置Handler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⑥配置处理器映射器"><span class="toc-number">1.1.5.</span> <span class="toc-text">⑥配置处理器映射器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⑦配置处理器适配器"><span class="toc-number">1.1.6.</span> <span class="toc-text">⑦配置处理器适配器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⑧配置视图解析器"><span class="toc-number">1.1.7.</span> <span class="toc-text">⑧配置视图解析器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署调试"><span class="toc-number">1.2.</span> <span class="toc-text">部署调试</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            SpringMVC笔记（2）
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/07/12/SpringMVC笔记（2）/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-12T14:28:27.000Z" itemprop="datePublished">2018-07-12</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/SpringMVC笔记/">SpringMVC笔记</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="SpringMVC-MAVEN工程创建"><a href="#SpringMVC-MAVEN工程创建" class="headerlink" title="SpringMVC(MAVEN工程创建)"></a>SpringMVC(MAVEN工程创建)</h2><h3 id="IDEA创建过程"><a href="#IDEA创建过程" class="headerlink" title="IDEA创建过程"></a>IDEA创建过程</h3><h4 id="①创建MAVEN（web工程）"><a href="#①创建MAVEN（web工程）" class="headerlink" title="①创建MAVEN（web工程）"></a>①创建MAVEN（web工程）</h4><p><code>new-&gt;project-&gt;maven</code>，建一个裸的maven工程</p>
+<h4 id="②添加依赖（pom-xml文件）"><a href="#②添加依赖（pom-xml文件）" class="headerlink" title="②添加依赖（pom.xml文件）"></a>②添加依赖（pom.xml文件）</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span> </span><br><span class="line">           <span class="comment">&lt;!--版本号4.2.4--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="③配置文件–前端控制器（web-xml）"><a href="#③配置文件–前端控制器（web-xml）" class="headerlink" title="③配置文件–前端控制器（web.xml）"></a>③配置文件–前端控制器（web.xml）</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- contextConfigLocation配置springmvc加载的配置文件(配置处理器映射器、适配器等等)</span></span><br><span class="line"><span class="comment">      若不配置，默认加载WEB-INF/servlet名称-servlet(springmvc-servlet.xml)</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">                   <span class="comment">&lt;!--Springmvc.xml文件的地址--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    第一种:*.action,访问以.action结尾，由DispatcherServlet进行解析</span></span><br><span class="line"><span class="comment">    第二种:/,所有访问的地址由DispatcherServlet进行解析，对静态文件的解析需要配置不让DispatcherServlet进行解析，</span></span><br><span class="line"><span class="comment">            使用此种方式和实现RESTful风格的url</span></span><br><span class="line"><span class="comment">    第三种:/*,这样配置不对，使用这种配置，最终要转发到一个jsp页面时，仍然会由DispatcherServlet解析jsp地址，</span></span><br><span class="line"><span class="comment">            不能根据jsp页面找到handler，会报错</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/FOoGJXA.png" alt="配置后的web.xml"></p>
+<h4 id="⑤配置Handler"><a href="#⑤配置Handler" class="headerlink" title="⑤配置Handler"></a>⑤配置Handler</h4><p>将编写Handler在spring容器加载</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置Handler --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/queryItems.action"</span> <span class="attr">class</span>=<span class="string">"com.iot.ssm.controller.ItemsController"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="⑥配置处理器映射器"><a href="#⑥配置处理器映射器" class="headerlink" title="⑥配置处理器映射器"></a>⑥配置处理器映射器</h4><p>在classpath下的springmvc.xml中配置处理器映射器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 处理器映射器</span></span><br><span class="line"><span class="comment">    将bean的name作为url进行查找，需要在配置Handler时指定beanname(就是url)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="⑦配置处理器适配器"><a href="#⑦配置处理器适配器" class="headerlink" title="⑦配置处理器适配器"></a>⑦配置处理器适配器</h4><p>所有处理器适配器都实现了<code>HandlerAdapter</code>接口</p>
+<p><code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&gt;</code></p>
+<p>源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object handler)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> handler <span class="keyword">instanceof</span> Controller;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此适配器能执行实现<code>Controller</code>接口的Handler</p>
+<h4 id="⑧配置视图解析器"><a href="#⑧配置视图解析器" class="headerlink" title="⑧配置视图解析器"></a>⑧配置视图解析器</h4><p>需要配置解析jsp的视图解析器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 视图解析器</span></span><br><span class="line"><span class="comment">   解析jsp,默认使用jstl,classpath下要有jstl的包</span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在springmvc.xml中视图解析器配置前缀和后缀：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置jsp路径的前缀 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置jsp路径的后缀 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>程序中不用指定前缀和后缀：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指定视图</span></span><br><span class="line"><span class="comment">//下边的路径，如果在视图解析器中配置jsp的路径前缀和后缀，修改为items/itemsList</span></span><br><span class="line"><span class="comment">//modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//下边的路径配置就可以不在程序中指定jsp路径的前缀和后缀</span></span><br><span class="line">modelAndView.setViewName(<span class="string">"items/itemsList"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="部署调试"><a href="#部署调试" class="headerlink" title="部署调试"></a>部署调试</h3><p><code>HTTP Status 404 -</code><br>处理器映射器根据url找不到Handler,说明url错误</p>
+<p><code>HTTP Status 404 -/springmvc/WEB-INF/jsp/items/itemsLists.jsp</code><br>处理器映射器根据url找到了Handler，转发的jsp页面找不到</p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="disqus_thread">
+        <p class="comment-tips">国内查看评论需要代理~</p>
+    </div>
+    <script>
+    window.disqus_config = function () {
+        this.language = 'zh';
+        this.page.url = 'http://hellowordcode.github.io/2018/07/12/SpringMVC笔记（2）/';
+        this.page.title = 'SpringMVC笔记（2）';
+        this.page.identifier = '2018/07/12/SpringMVC笔记（2）/';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://name.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+        <footer class="footer">
+
+</footer>
+
+<script type="text/javascript" src="//s13.cnzz.com/z_stat.php?id=1234567890&amp;web_id=1234567890"></script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+
+</body>
+</html>
